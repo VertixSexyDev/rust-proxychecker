@@ -3,9 +3,12 @@ mod utils {
     pub mod createoption;
     pub mod input;
     pub mod filereader;
+    pub mod choosefile;
 }
 mod modules {
     pub mod http;
+    pub mod socks4;
+    pub mod socks5;
 }
 fn main() {
     clearscreen::clear().unwrap();
@@ -23,8 +26,18 @@ fn main() {
         if moduleinput == "1" {
             clearscreen::clear().unwrap();
             utils::logo::logo();
-            let path = utils::input::input("Path to proxies: ");
+            let path = utils::choosefile::choose();
             utils::filereader::read_file(&path, 1);
+        } else if moduleinput == "2" {
+            clearscreen::clear().unwrap();
+            utils::logo::logo();
+            let path = utils::choosefile::choose();
+            utils::filereader::read_file(&path, 2);
+        } else if moduleinput == "3" {
+            clearscreen::clear().unwrap();
+            utils::logo::logo();
+            let path = utils::choosefile::choose();
+            utils::filereader::read_file(&path, 3);
         }
     }
 }
